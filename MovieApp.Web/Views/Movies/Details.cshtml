@@ -1,0 +1,52 @@
+﻿@*tek veri gelmiş olacak id üzerinden*@
+@model Movie
+
+@if (TempData["Message"] != null)
+{
+    @section message
+
+    {
+
+        @await Html.PartialAsync("_message", (String)TempData["Message"])
+
+    }
+
+}
+
+<div class="card m-4    ">
+
+    <div class="row ">
+        <div class="col-md-3">
+            <img src="/img/@Model.ImageUrl" class="card-img" />
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @Model.Title
+                </h5>
+                <p class="card-text">@Model.Description </p>
+                @*@if (Model.Players != null)
+                {
+                    <p>
+                        <ul>
+                            @foreach (var player in Model.Players)
+                            {
+                                <li>
+                                    @player
+                                </li>
+
+                            }
+                        </ul>
+                    </p>
+                }*@
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+

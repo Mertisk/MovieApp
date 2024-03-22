@@ -1,0 +1,54 @@
+﻿@*@model List<MovieApp.Web.Models.Movie>*@
+@model MoviesViewModel
+@*buranın list olma sebebi datanın controller list olarak tanımlanmasından dolayı.*@
+
+
+
+
+<h1>Film Listesi</h1>
+
+
+<div id="filmler">
+
+    @if (Model.Movies.Count() > 0)
+    {
+
+
+        @foreach (var movie in Model.Movies)
+        {
+            @await Html.PartialAsync("_movie", movie)
+        }
+
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <p> Film Bulunamadı.</p>
+
+        </div>
+    }
+
+
+</div>
+
+@*messageden gelen mesaj var ise _message yani parçalı view çalışır.*@
+
+@if (TempData["Message"] != null)
+{
+    @section message 
+
+    {
+
+        @await Html.PartialAsync("_message", (String)TempData["Message"])
+
+    }
+
+}
+
+
+
+@section menu {
+    @*@await Html.PartialAsync("_menu",Model.Genres)*@
+    @await Component.InvokeAsync("Genres")
+}
+

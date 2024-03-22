@@ -1,0 +1,70 @@
+﻿@model Movie
+
+<h1>
+    Create Movie
+</h1>
+
+<hr />
+
+@*<form action="/movies/create" method="post">
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" name="Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+          <textarea name="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="Director ">Director </label>
+            <input type="text" name="Director " class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="ImageUrl">ImageUrl</label>
+            <input type="text" name="ImageUrl" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="GenreId">GenreId</label>
+            <input type="text" name="GenreId" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>*@
+
+
+@*//asp-for  form modelini kullanambilmek için viewImporta tag etiket açtık bilgin olsun*@
+<form asp-controller="Movies" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span class="text-danger" asp-validation-for="Title"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span class="text-danger" asp-validation-for="Description"></span>
+
+    </div>
+    
+
+    
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <span class="text-danger" asp-validation-for="ImageUrl"></span>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GenreId"></label>
+        <select asp-for="GenreId" asp-items="@ViewBag.Genres" class="form-control">
+            @*disabled seçiniz alanını seçemez*@
+            <option selected disabled>Seçiniz</option>
+            @*<option value="1">Macera</option>
+                <option value="2">Komedi</option>
+                <option value="3">Romantik</option>
+                <option value="4">Savaş</option>*@
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
